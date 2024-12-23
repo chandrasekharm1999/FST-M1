@@ -5,24 +5,30 @@ public class Car {
 	String transmission;
 	int make;
 	int tyre;
-	int speed;
+	int doors;
 	
 	
 	//constructor
-	Car(String colour, String transmission, int make, int tyre, int speed){
-		this.colour = colour;
-		this.transmission = transmission;
-		this.make = make;
-		this.speed = speed;
+	Car(){
+		tyres = 4;
+		doors = 4;
 		
 	}
 	
 // methods
-	public void accelerate() {
-		this.speed++;
-	}
+    public void displayCharacterstics(){
+	System.out.println("Color of the Car: " + color);
+	System.out.println("Make of the Car: " + make);
+	System.out.println("Transmission of the Car: " + transmission);
+	System.out.println("Number of doors on the car: " + doors);
+    	System.out.println("Number of tyres on the car: " + tyres);
+    }
+
+    public void accelerate() {
+	System.out.println("Car is moving forward.");
+    }
 	
-	public void brake() {
-		this.speed = 0;
-	}
+    public void brake() {
+	System.out.println("Car has stopped.");
+    }
 }
