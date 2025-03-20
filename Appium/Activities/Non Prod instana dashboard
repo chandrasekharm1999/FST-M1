@@ -1,0 +1,3349 @@
+{
+  "id": "0dnh-dQNTZeblIejZ9RTXQ",
+  "title": "All Services [ica-np-us-east]",
+  "accessRules": [
+    {
+      "accessType": "READ_WRITE",
+      "relationType": "USER",
+      "relatedId": "60764358c00835000154886e"
+    }
+  ],
+  "widgets": [
+    {
+      "id": "wadgHZdIPkF7l0Xs",
+      "title": "Worker Nodes - Memory",
+      "width": 6,
+      "height": 18,
+      "x": 6,
+      "y": 196,
+      "type": "table",
+      "config": {
+        "showGroupsWithMissingTags": false,
+        "tagFilterExpression": {
+          "tagDefinition": {
+            "path": [
+              {
+                "label": "Kubernetes"
+              },
+              {
+                "label": "Cluster"
+              },
+              {
+                "label": "name"
+              }
+            ],
+            "name": "kubernetes.cluster.name",
+            "availability": [],
+            "type": "STRING"
+          },
+          "name": "kubernetes.cluster.name",
+          "type": "TAG_FILTER",
+          "value": "ica-np-us-east",
+          "entity": "NOT_APPLICABLE",
+          "operator": "EQUALS"
+        },
+        "entityType": "kubernetesNode",
+        "sorting": {
+          "by": "label",
+          "direction": "ASC"
+        },
+        "tableSize": 5,
+        "countGroup": true,
+        "source": "INFRASTRUCTURE_METRICS",
+        "datasets": {
+          "metrics": [
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "MEAN",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "kubernetesNode",
+              "metricPath": [],
+              "required": false,
+              "formatter": "bytes.detailed",
+              "unit": "byte",
+              "metric": "required_mem",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "Memory Requests",
+              "crossSeriesAggregation": "MEAN"
+            },
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "MEAN",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "kubernetesNode",
+              "metricPath": [],
+              "required": false,
+              "formatter": "bytes.detailed",
+              "unit": "byte",
+              "metric": "limit_mem",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "Memory Limits",
+              "crossSeriesAggregation": "MEAN"
+            },
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "MEAN",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "kubernetesNode",
+              "metricPath": [],
+              "required": false,
+              "formatter": "bytes.detailed",
+              "unit": "byte",
+              "metric": "cap_mem",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "Memory Capacity",
+              "crossSeriesAggregation": "MEAN"
+            }
+          ]
+        },
+        "grouping": []
+      }
+    },
+    {
+      "id": "oAvySSbjawUDl7kc",
+      "title": "Calls per URL [90th]",
+      "width": 3,
+      "height": 16,
+      "x": 0,
+      "y": 38,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "calls",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "HTTP",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "DESTINATION",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "call.name",
+                "type": "TAG_FILTER",
+                "value": "GET /health",
+                "entity": "NOT_APPLICABLE",
+                "operator": "NOT_CONTAIN"
+              },
+              {
+                "name": "call.name",
+                "type": "TAG_FILTER",
+                "value": "GET /notifications/ws",
+                "entity": "NOT_APPLICABLE",
+                "operator": "NOT_CONTAIN"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "SUM",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 10,
+              "by": {
+                "groupbyTag": "call.http.url",
+                "groupbyTagEntity": "NOT_APPLICABLE",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "m3xgDKWRL4ajG17L",
+      "title": "Database Statements",
+      "width": 6,
+      "height": 16,
+      "x": 0,
+      "y": 124,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "calls",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "DATABASE",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "SOURCE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "call.database.type",
+                "type": "TAG_FILTER",
+                "value": "mongo",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "SUM",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 20,
+              "by": {
+                "groupbyTag": "call.database.statement",
+                "groupbyTagEntity": "NOT_APPLICABLE",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "KBVHVFZ3QfURzogC",
+      "title": "Call latency per URL [90th]",
+      "width": 3,
+      "height": 16,
+      "x": 9,
+      "y": 38,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "latency.detailed",
+          "renderer": "line",
+          "metrics": [
+            {
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P90",
+              "label": "",
+              "source": "APPLICATION",
+              "grouping": [
+                {
+                  "maxResults": 10,
+                  "by": {
+                    "groupbyTag": "call.http.url",
+                    "groupbyTagEntity": "NOT_APPLICABLE",
+                    "groupbyTagSecondLevelKey": ""
+                  },
+                  "includeOthers": false,
+                  "direction": "DESC"
+                }
+              ],
+              "includeSynthetic": false,
+              "metric": "latency",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [
+                  {
+                    "name": "call.type",
+                    "type": "TAG_FILTER",
+                    "value": "HTTP",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "kubernetes.cluster.name",
+                    "type": "TAG_FILTER",
+                    "value": "ica-np-us-east",
+                    "entity": "DESTINATION",
+                    "operator": "EQUALS"
+                  }
+                ],
+                "type": "EXPRESSION"
+              },
+              "metricLabel": "Latency",
+              "includeInternal": false
+            }
+          ],
+          "formatterSelected": false
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "C-0OpFPmyInIsfD_",
+      "title": "Calls per technology",
+      "width": 4,
+      "height": 16,
+      "x": 4,
+      "y": 54,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "number.detailed",
+          "renderer": "stackedArea",
+          "metrics": [
+            {
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "SUM",
+              "label": "",
+              "source": "APPLICATION",
+              "grouping": [
+                {
+                  "maxResults": 5,
+                  "by": {
+                    "groupbyTag": "technology",
+                    "groupbyTagEntity": "DESTINATION",
+                    "groupbyTagSecondLevelKey": ""
+                  },
+                  "includeOthers": true,
+                  "direction": "DESC"
+                }
+              ],
+              "includeSynthetic": false,
+              "metric": "calls",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [
+                  {
+                    "name": "call.type",
+                    "type": "TAG_FILTER",
+                    "value": "HTTP",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "kubernetes.cluster.name",
+                    "type": "TAG_FILTER",
+                    "value": "ica-np-us-east",
+                    "entity": "DESTINATION",
+                    "operator": "EQUALS"
+                  }
+                ],
+                "type": "EXPRESSION"
+              },
+              "metricLabel": "Calls",
+              "includeInternal": false
+            }
+          ],
+          "formatterSelected": false
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "2ohtRfOJ5afZOk6m",
+      "title": "Latency of calls from browser [90th]",
+      "width": 3,
+      "height": 16,
+      "x": 9,
+      "y": 22,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": [
+            {
+              "color": "",
+              "metric": "beaconDuration",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "name": "beacon.backend.traceId",
+                "type": "TAG_FILTER",
+                "entity": "NOT_APPLICABLE",
+                "operator": "NOT_EMPTY"
+              },
+              "beaconType": "httpRequest",
+              "metricLabel": "HTTP request - Retrieval time",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P90",
+              "label": "Latency of calls from browser [90th]",
+              "source": "WEBSITE",
+              "grouping": [
+                {
+                  "maxResults": 10,
+                  "by": {
+                    "groupbyTag": "beacon.http.origin",
+                    "groupbyTagEntity": "NOT_APPLICABLE",
+                    "groupbyTagSecondLevelKey": ""
+                  },
+                  "includeOthers": true,
+                  "direction": "DESC"
+                }
+              ]
+            }
+          ],
+          "formatterSelected": false
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "JjpmANN364FdG8FL",
+      "title": "Erronious Calls per service",
+      "width": 3,
+      "height": 16,
+      "x": 0,
+      "y": 70,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "erroneousCalls",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "HTTP",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "DESTINATION",
+                "operator": "EQUALS"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "SUM",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 20,
+              "by": {
+                "groupbyTag": "service.name",
+                "groupbyTagEntity": "DESTINATION",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "xSUZcUvJ-eMTahJR",
+      "title": "Resource Utilization",
+      "width": 12,
+      "height": 6,
+      "x": 0,
+      "y": 156,
+      "type": "markdown",
+      "config": "# Production"
+    },
+    {
+      "id": "CWOFXTuoPuc36ZlH",
+      "title": "Processes with high CPU usage",
+      "width": 12,
+      "height": 18,
+      "x": 0,
+      "y": 214,
+      "type": "table",
+      "config": {
+        "showGroupsWithMissingTags": false,
+        "tagFilterExpression": {
+          "tagDefinition": {
+            "path": [
+              {
+                "label": "Kubernetes"
+              },
+              {
+                "label": "Cluster"
+              },
+              {
+                "label": "name"
+              }
+            ],
+            "name": "kubernetes.cluster.name",
+            "availability": [],
+            "type": "STRING"
+          },
+          "name": "kubernetes.cluster.name",
+          "type": "TAG_FILTER",
+          "value": "ica-np-us-east",
+          "entity": "NOT_APPLICABLE",
+          "operator": "EQUALS"
+        },
+        "entityType": "process",
+        "sorting": {
+          "by": "cpu.user.P75.P75",
+          "direction": "DESC"
+        },
+        "tableSize": 20,
+        "countGroup": false,
+        "source": "INFRASTRUCTURE_METRICS",
+        "datasets": {
+          "metrics": [
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P75",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "process",
+              "metricPath": [
+                "CPU Usage"
+              ],
+              "required": false,
+              "formatterSelected": true,
+              "formatter": "percentage.detailed",
+              "unit": "percentage",
+              "metric": "cpu.user",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "User",
+              "crossSeriesAggregation": "P75"
+            },
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P75",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "process",
+              "metricPath": [],
+              "required": false,
+              "formatterSelected": true,
+              "formatter": "percentage.detailed",
+              "unit": "percentage",
+              "metric": "cpu.sys",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "System",
+              "crossSeriesAggregation": "P75"
+            },
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P75",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "process",
+              "metricPath": [
+                "Memory"
+              ],
+              "required": false,
+              "formatterSelected": true,
+              "formatter": "bytes.compact",
+              "unit": "byte",
+              "metric": "mem.resident",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "Resident",
+              "crossSeriesAggregation": "P75"
+            }
+          ]
+        },
+        "grouping": [
+          {
+            "tagDefinition": {
+              "path": [
+                {
+                  "label": "Host"
+                },
+                {
+                  "label": "ip"
+                }
+              ],
+              "name": "host.ip",
+              "availability": [],
+              "type": "STRING_SET"
+            },
+            "tagType": "STRING_SET",
+            "groupbyTag": "host.ip"
+          },
+          {
+            "groupbyTag": "process.exec",
+            "groupbyTagEntity": "DESTINATION"
+          },
+          {
+            "tagDefinition": {
+              "path": [
+                {
+                  "label": "Internal"
+                },
+                {
+                  "label": "process.id"
+                }
+              ],
+              "name": "process.id",
+              "availability": [],
+              "type": "STRING"
+            },
+            "tagType": "STRING",
+            "groupbyTag": "process.id"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ENYynhzx1Xw6NIYD",
+      "title": "Database latency - PostgreSQL [90th]",
+      "width": 6,
+      "height": 16,
+      "x": 6,
+      "y": 140,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "latency",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "DATABASE",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "SOURCE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "call.database.type",
+                "type": "TAG_FILTER",
+                "value": "jdbc",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "P90",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 20,
+              "by": {
+                "groupbyTag": "call.database.statement",
+                "groupbyTagEntity": "NOT_APPLICABLE",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "twtXZV5jOZevK2cU",
+      "title": "Call latency per service [90th]",
+      "width": 3,
+      "height": 16,
+      "x": 6,
+      "y": 22,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "latency.detailed",
+          "renderer": "line",
+          "metrics": [
+            {
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P90",
+              "label": "",
+              "source": "APPLICATION",
+              "grouping": [
+                {
+                  "maxResults": 10,
+                  "by": {
+                    "groupbyTag": "service.name",
+                    "groupbyTagEntity": "DESTINATION",
+                    "groupbyTagSecondLevelKey": ""
+                  },
+                  "includeOthers": true,
+                  "direction": "DESC"
+                }
+              ],
+              "includeSynthetic": false,
+              "metric": "latency",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [
+                  {
+                    "name": "call.type",
+                    "type": "TAG_FILTER",
+                    "value": "HTTP",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "kubernetes.cluster.name",
+                    "type": "TAG_FILTER",
+                    "value": "ica-np-us-east",
+                    "entity": "DESTINATION",
+                    "operator": "EQUALS"
+                  }
+                ],
+                "type": "EXPRESSION"
+              },
+              "metricLabel": "Latency",
+              "includeInternal": false
+            }
+          ],
+          "formatterSelected": false
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "Nnl2xHlO1WhsN8l6",
+      "title": "Call latency per URL [90th]",
+      "width": 3,
+      "height": 16,
+      "x": 3,
+      "y": 38,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "latency",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "HTTP",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "DESTINATION",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "call.name",
+                "type": "TAG_FILTER",
+                "value": "GET /health",
+                "entity": "NOT_APPLICABLE",
+                "operator": "NOT_CONTAIN"
+              },
+              {
+                "name": "call.name",
+                "type": "TAG_FILTER",
+                "value": "GET /notifications/ws",
+                "entity": "NOT_APPLICABLE",
+                "operator": "NOT_CONTAIN"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "P90",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 10,
+              "by": {
+                "groupbyTag": "call.http.url",
+                "groupbyTagEntity": "NOT_APPLICABLE",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "HqSL1aSS0ZFgzq8q",
+      "title": "CPU Utilization - 75th",
+      "width": 12,
+      "height": 34,
+      "x": 0,
+      "y": 162,
+      "type": "table",
+      "config": {
+        "showGroupsWithMissingTags": true,
+        "tagFilterExpression": {
+          "logicalOperator": "AND",
+          "elements": [
+            {
+              "tagDefinition": {
+                "path": [
+                  {
+                    "label": "Kubernetes"
+                  },
+                  {
+                    "label": "Cluster"
+                  },
+                  {
+                    "label": "name"
+                  }
+                ],
+                "name": "kubernetes.cluster.name",
+                "availability": [],
+                "type": "STRING"
+              },
+              "name": "kubernetes.cluster.name",
+              "type": "TAG_FILTER",
+              "value": "ica-np-us-east",
+              "entity": "NOT_APPLICABLE",
+              "operator": "EQUALS"
+            },
+            {
+              "tagDefinition": {
+                "path": [
+                  {
+                    "label": "Container"
+                  },
+                  {
+                    "label": "Crio"
+                  },
+                  {
+                    "label": "label.io.kubernetes.container.name"
+                  }
+                ],
+                "name": "crio.label.io.kubernetes.container.name",
+                "availability": [],
+                "type": "STRING"
+              },
+              "name": "crio.label.io.kubernetes.container.name",
+              "type": "TAG_FILTER",
+              "value": "step-task",
+              "entity": "NOT_APPLICABLE",
+              "operator": "NOT_CONTAIN"
+            },
+            {
+              "logicalOperator": "AND",
+              "elements": [
+                {
+                  "logicalOperator": "AND",
+                  "elements": [
+                    {
+                      "logicalOperator": "AND",
+                      "elements": [
+                        {
+                          "logicalOperator": "OR",
+                          "elements": [
+                            {
+                              "tagDefinition": {
+                                "path": [
+                                  {
+                                    "label": "Kubernetes"
+                                  },
+                                  {
+                                    "label": "Namespace"
+                                  },
+                                  {
+                                    "label": "name"
+                                  }
+                                ],
+                                "name": "kubernetes.namespace.name",
+                                "availability": [],
+                                "type": "STRING"
+                              },
+                              "name": "kubernetes.namespace.name",
+                              "type": "TAG_FILTER",
+                              "value": "ica-core",
+                              "entity": "NOT_APPLICABLE",
+                              "operator": "EQUALS"
+                            },
+                            {
+                              "name": "kubernetes.namespace.name",
+                              "type": "TAG_FILTER",
+                              "value": "ica-assistants",
+                              "entity": "NOT_APPLICABLE",
+                              "operator": "EQUALS"
+                            },
+                            {
+                              "name": "kubernetes.namespace.name",
+                              "type": "TAG_FILTER",
+                              "value": "ica-scribeflow",
+                              "entity": "NOT_APPLICABLE",
+                              "operator": "EQUALS"
+                            },
+                            {
+                              "name": "kubernetes.namespace.name",
+                              "type": "TAG_FILTER",
+                              "value": "ica-integrations",
+                              "entity": "NOT_APPLICABLE",
+                              "operator": "EQUALS"
+                            }
+                          ],
+                          "type": "EXPRESSION"
+                        }
+                      ],
+                      "type": "EXPRESSION"
+                    }
+                  ],
+                  "type": "EXPRESSION"
+                }
+              ],
+              "type": "EXPRESSION"
+            },
+            {
+              "tagDefinition": {
+                "path": [
+                  {
+                    "label": "Kubernetes"
+                  },
+                  {
+                    "label": "Deployment"
+                  },
+                  {
+                    "label": "name"
+                  }
+                ],
+                "name": "kubernetes.deployment.name",
+                "availability": [],
+                "type": "STRING"
+              },
+              "name": "kubernetes.deployment.name",
+              "type": "TAG_FILTER",
+              "entity": "NOT_APPLICABLE",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "tagDefinition": {
+                "path": [
+                  {
+                    "label": "Kubernetes"
+                  },
+                  {
+                    "label": "Deployment"
+                  },
+                  {
+                    "label": "name"
+                  }
+                ],
+                "name": "kubernetes.deployment.name",
+                "availability": [],
+                "type": "STRING"
+              },
+              "name": "kubernetes.deployment.name",
+              "type": "TAG_FILTER",
+              "value": "test",
+              "entity": "NOT_APPLICABLE",
+              "operator": "NOT_EQUAL"
+            }
+          ],
+          "type": "EXPRESSION"
+        },
+        "entityType": "crio",
+        "sorting": {
+          "by": "cpu.total_usage.P75.P75",
+          "direction": "DESC"
+        },
+        "tableSize": 20,
+        "countGroup": true,
+        "source": "INFRASTRUCTURE_METRICS",
+        "datasets": {
+          "metrics": [
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P75",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "crio",
+              "metricPath": [
+                "CPU"
+              ],
+              "required": false,
+              "formatterSelected": true,
+              "formatter": "percentage.compact",
+              "unit": "percentage",
+              "metric": "cpu.total_usage",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "CPU Total",
+              "crossSeriesAggregation": "P75"
+            },
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "MEAN",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "crio",
+              "metricPath": [
+                "Memory"
+              ],
+              "required": false,
+              "formatter": "bytes.detailed",
+              "unit": "byte",
+              "metric": "memory.usage",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "Memory Usage",
+              "crossSeriesAggregation": "MEAN"
+            }
+          ]
+        },
+        "grouping": [
+          {
+            "tagDefinition": {
+              "path": [
+                {
+                  "label": "Kubernetes"
+                },
+                {
+                  "label": "Namespace"
+                },
+                {
+                  "label": "name"
+                }
+              ],
+              "name": "kubernetes.namespace.name",
+              "availability": [],
+              "type": "STRING"
+            },
+            "tagType": "STRING",
+            "groupbyTag": "kubernetes.namespace.name"
+          },
+          {
+            "tagDefinition": {
+              "path": [
+                {
+                  "label": "Kubernetes"
+                },
+                {
+                  "label": "Deployment"
+                },
+                {
+                  "label": "name"
+                }
+              ],
+              "name": "kubernetes.deployment.name",
+              "availability": [],
+              "type": "STRING"
+            },
+            "tagType": "STRING",
+            "groupbyTag": "kubernetes.deployment.name"
+          },
+          {
+            "tagDefinition": {
+              "path": [
+                {
+                  "label": "Container"
+                },
+                {
+                  "label": "Crio"
+                },
+                {
+                  "label": "label.io.kubernetes.container.name"
+                }
+              ],
+              "name": "crio.label.io.kubernetes.container.name",
+              "availability": [],
+              "type": "STRING"
+            },
+            "tagType": "STRING",
+            "groupbyTag": "crio.label.io.kubernetes.container.name"
+          }
+        ]
+      }
+    },
+    {
+      "id": "XzPYorDepoo_INIP",
+      "title": "Logs with ERROR log level",
+      "width": 4,
+      "height": 16,
+      "x": 8,
+      "y": 70,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "number.compact",
+          "renderer": "stackedBar",
+          "metrics": [
+            {
+              "color": "",
+              "metric": "logs_distribution",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              "metricLabel": "Unnamed Log Metric",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "SUM",
+              "label": "Error logs",
+              "source": "LOG"
+            }
+          ],
+          "formatterSelected": true
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "ikMfVDzO2Wu2RvYY",
+      "title": "Host CPU usage",
+      "width": 7,
+      "height": 18,
+      "x": 0,
+      "y": 232,
+      "type": "table",
+      "config": {
+        "showGroupsWithMissingTags": false,
+        "tagFilterExpression": {
+          "tagDefinition": {
+            "path": [
+              {
+                "label": "Host"
+              },
+              {
+                "label": "name"
+              }
+            ],
+            "name": "host.name",
+            "availability": [],
+            "type": "STRING"
+          },
+          "name": "host.name",
+          "type": "TAG_FILTER",
+          "value": "icanpuseast",
+          "entity": "NOT_APPLICABLE",
+          "operator": "CONTAINS"
+        },
+        "entityType": "host",
+        "sorting": {
+          "by": "cpu.used.P75.P75",
+          "direction": "DESC"
+        },
+        "tableSize": 20,
+        "countGroup": false,
+        "source": "INFRASTRUCTURE_METRICS",
+        "datasets": {
+          "metrics": [
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P75",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "host",
+              "metricPath": [
+                "CPU"
+              ],
+              "required": false,
+              "formatterSelected": true,
+              "formatter": "percentage.compact",
+              "unit": "percentage",
+              "metric": "cpu.used",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "Used",
+              "crossSeriesAggregation": "P75"
+            },
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P75",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "host",
+              "metricPath": [
+                "CPU"
+              ],
+              "required": false,
+              "formatterSelected": true,
+              "formatter": "number.detailed",
+              "unit": "number",
+              "metric": "load.1min",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "Load",
+              "crossSeriesAggregation": "P75"
+            },
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P75",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "host",
+              "metricPath": [
+                "CPU"
+              ],
+              "required": false,
+              "formatterSelected": true,
+              "formatter": "percentage.compact",
+              "unit": "percentage",
+              "metric": "cpu.steal",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "Steal usage",
+              "crossSeriesAggregation": "P75"
+            },
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P75",
+              "label": "Memory Used",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "host",
+              "metricPath": [],
+              "required": false,
+              "formatterSelected": true,
+              "formatter": "percentage.compact",
+              "unit": "percentage",
+              "metric": "memory.used",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "Used",
+              "crossSeriesAggregation": "P75"
+            },
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P75",
+              "label": "Memory Available",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "host",
+              "metricPath": [],
+              "required": false,
+              "formatterSelected": true,
+              "formatter": "bytes.compact",
+              "unit": "byte",
+              "metric": "memory.available",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "Available",
+              "crossSeriesAggregation": "P75"
+            }
+          ]
+        },
+        "grouping": [
+          {
+            "tagDefinition": {
+              "path": [
+                {
+                  "label": "Host"
+                },
+                {
+                  "label": "ip"
+                }
+              ],
+              "name": "host.ip",
+              "availability": [],
+              "type": "STRING_SET"
+            },
+            "tagType": "STRING_SET",
+            "groupbyTag": "host.ip"
+          }
+        ]
+      }
+    },
+    {
+      "id": "1gKlwtRx-xlOUwvH",
+      "title": "Database calls per database",
+      "width": 3,
+      "height": 16,
+      "x": 6,
+      "y": 92,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "calls",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "DATABASE",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "SOURCE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "call.database.type",
+                "type": "TAG_FILTER",
+                "value": "mongo",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "SUM",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 20,
+              "by": {
+                "groupbyTag": "service.name",
+                "groupbyTagEntity": "DESTINATION",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "SJN5QvU8OUsuej3l",
+      "title": "HTTP Call Details",
+      "width": 12,
+      "height": 6,
+      "x": 0,
+      "y": 0,
+      "type": "markdown",
+      "config": "-"
+    },
+    {
+      "id": "BV_SazbGS9mUvyov",
+      "title": "Database calls per service",
+      "width": 3,
+      "height": 16,
+      "x": 0,
+      "y": 108,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "calls",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "DATABASE",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "SOURCE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "call.database.type",
+                "type": "TAG_FILTER",
+                "value": "mongo",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "SUM",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 20,
+              "by": {
+                "groupbyTag": "service.name",
+                "groupbyTagEntity": "SOURCE",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "K3bteitCyuAsmpjM",
+      "title": "Database calls per deployment",
+      "width": 3,
+      "height": 16,
+      "x": 0,
+      "y": 92,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "calls",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "DATABASE",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "SOURCE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "call.database.type",
+                "type": "TAG_FILTER",
+                "value": "mongo",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "SUM",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 20,
+              "by": {
+                "groupbyTag": "kubernetes.deployment.name",
+                "groupbyTagEntity": "SOURCE",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "8dye6tRb3M4_X9gq",
+      "title": "Calls per service",
+      "width": 3,
+      "height": 16,
+      "x": 6,
+      "y": 6,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "number.detailed",
+          "renderer": "stackedArea",
+          "metrics": [
+            {
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "SUM",
+              "label": "",
+              "source": "APPLICATION",
+              "grouping": [
+                {
+                  "maxResults": 10,
+                  "by": {
+                    "groupbyTag": "service.name",
+                    "groupbyTagEntity": "DESTINATION",
+                    "groupbyTagSecondLevelKey": ""
+                  },
+                  "includeOthers": true,
+                  "direction": "DESC"
+                }
+              ],
+              "includeSynthetic": false,
+              "metric": "calls",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [
+                  {
+                    "name": "call.type",
+                    "type": "TAG_FILTER",
+                    "value": "HTTP",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "kubernetes.cluster.name",
+                    "type": "TAG_FILTER",
+                    "value": "ica-np-us-east",
+                    "entity": "DESTINATION",
+                    "operator": "EQUALS"
+                  }
+                ],
+                "type": "EXPRESSION"
+              },
+              "metricLabel": "Calls",
+              "includeInternal": false
+            }
+          ],
+          "formatterSelected": false
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "jRxck7FplIiJ_H-r",
+      "title": "Calls per service",
+      "width": 3,
+      "height": 16,
+      "x": 3,
+      "y": 6,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "calls",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "HTTP",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "DESTINATION",
+                "operator": "EQUALS"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "SUM",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 20,
+              "by": {
+                "groupbyTag": "service.name",
+                "groupbyTagEntity": "DESTINATION",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "-sKLG-r3hXzj3Wxm",
+      "title": "Call latency per deploy [90th]",
+      "width": 3,
+      "height": 16,
+      "x": 0,
+      "y": 22,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "latency",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "HTTP",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "DESTINATION",
+                "operator": "EQUALS"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "P90",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 10,
+              "by": {
+                "groupbyTag": "kubernetes.deployment.name",
+                "groupbyTagEntity": "DESTINATION",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "zcbiV2Qit21zmwxB",
+      "title": "Calls per deployment",
+      "width": 3,
+      "height": 16,
+      "x": 0,
+      "y": 6,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "calls",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "HTTP",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "DESTINATION",
+                "operator": "EQUALS"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "SUM",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 10,
+              "by": {
+                "groupbyTag": "kubernetes.deployment.name",
+                "groupbyTagEntity": "DESTINATION",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "P-cvw4qxknSK8hwV",
+      "title": "Database latency [90th]",
+      "width": 6,
+      "height": 16,
+      "x": 6,
+      "y": 124,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "latency",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "DATABASE",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "SOURCE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "call.database.type",
+                "type": "TAG_FILTER",
+                "value": "mongo",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "P90",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 20,
+              "by": {
+                "groupbyTag": "call.database.statement",
+                "groupbyTagEntity": "NOT_APPLICABLE",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "ifw7hHDy8rz6P_wC",
+      "title": "Call latency per technology [90th]",
+      "width": 4,
+      "height": 16,
+      "x": 8,
+      "y": 54,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "latency.detailed",
+          "renderer": "line",
+          "metrics": [
+            {
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P90",
+              "label": "",
+              "source": "APPLICATION",
+              "grouping": [
+                {
+                  "maxResults": 5,
+                  "by": {
+                    "groupbyTag": "technology",
+                    "groupbyTagEntity": "DESTINATION",
+                    "groupbyTagSecondLevelKey": ""
+                  },
+                  "includeOthers": true,
+                  "direction": "DESC"
+                }
+              ],
+              "includeSynthetic": false,
+              "metric": "latency",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [
+                  {
+                    "name": "call.type",
+                    "type": "TAG_FILTER",
+                    "value": "HTTP",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "kubernetes.cluster.name",
+                    "type": "TAG_FILTER",
+                    "value": "ica-np-us-east",
+                    "entity": "DESTINATION",
+                    "operator": "EQUALS"
+                  }
+                ],
+                "type": "EXPRESSION"
+              },
+              "metricLabel": "Latency",
+              "includeInternal": false
+            }
+          ],
+          "formatterSelected": false
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "LXl7CraAF_J18jrk",
+      "title": "Database latency per deployment",
+      "width": 3,
+      "height": 16,
+      "x": 3,
+      "y": 108,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "latency.detailed",
+          "renderer": "line",
+          "metrics": [
+            {
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P90",
+              "label": "",
+              "source": "APPLICATION",
+              "grouping": [
+                {
+                  "maxResults": 10,
+                  "by": {
+                    "groupbyTag": "kubernetes.deployment.name",
+                    "groupbyTagEntity": "SOURCE",
+                    "groupbyTagSecondLevelKey": ""
+                  },
+                  "includeOthers": true,
+                  "direction": "DESC"
+                }
+              ],
+              "includeSynthetic": false,
+              "metric": "latency",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [
+                  {
+                    "name": "call.type",
+                    "type": "TAG_FILTER",
+                    "value": "DATABASE",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "kubernetes.cluster.name",
+                    "type": "TAG_FILTER",
+                    "value": "ica-np-us-east",
+                    "entity": "SOURCE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "call.database.type",
+                    "type": "TAG_FILTER",
+                    "value": "mongo",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  }
+                ],
+                "type": "EXPRESSION"
+              },
+              "metricLabel": "Latency",
+              "includeInternal": false
+            }
+          ],
+          "formatterSelected": false
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "OyvuWcpxzIqQ601P",
+      "title": "Host CPU usage [User 75th]",
+      "width": 5,
+      "height": 18,
+      "x": 7,
+      "y": 232,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "percentage.detailed",
+          "renderer": "line",
+          "metrics": [
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P75",
+              "label": "CPU user usage [75th]",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "host",
+              "metricPath": [
+                "Others",
+                "Host",
+                "CPU"
+              ],
+              "grouping": [
+                {
+                  "maxResults": 10,
+                  "by": {
+                    "tagDefinition": {
+                      "path": [
+                        {
+                          "label": "Host"
+                        },
+                        {
+                          "label": "ip"
+                        }
+                      ],
+                      "name": "host.ip",
+                      "availability": [],
+                      "type": "STRING_SET"
+                    },
+                    "groupbyTag": "host.ip",
+                    "groupbyTagEntity": "NOT_APPLICABLE",
+                    "groupbyTagSecondLevelKey": ""
+                  },
+                  "includeOthers": false,
+                  "direction": "DESC"
+                }
+              ],
+              "formatter": "percentage.detailed",
+              "unit": "percentage",
+              "metric": "cpu.user",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "tagDefinition": {
+                  "path": [
+                    {
+                      "label": "Host"
+                    },
+                    {
+                      "label": "name"
+                    }
+                  ],
+                  "name": "host.name",
+                  "availability": [],
+                  "type": "STRING"
+                },
+                "name": "host.name",
+                "type": "TAG_FILTER",
+                "value": "icanpuseast",
+                "entity": "NOT_APPLICABLE",
+                "operator": "CONTAINS"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "CPU user usage",
+              "crossSeriesAggregation": "P75"
+            }
+          ],
+          "formatterSelected": false
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "lDNTLknS_fiQMjFK",
+      "title": "Database Call Details - MongoDB",
+      "width": 12,
+      "height": 6,
+      "x": 0,
+      "y": 86,
+      "type": "markdown",
+      "config": "-"
+    },
+    {
+      "id": "BSB3B1h5NCAAZFuU",
+      "title": "Deployment CPU Request and Limits",
+      "width": 12,
+      "height": 34,
+      "x": 0,
+      "y": 250,
+      "type": "table",
+      "config": {
+        "showGroupsWithMissingTags": true,
+        "tagFilterExpression": {
+          "logicalOperator": "AND",
+          "elements": [
+            {
+              "tagDefinition": {
+                "path": [
+                  {
+                    "label": "Kubernetes"
+                  },
+                  {
+                    "label": "Cluster"
+                  },
+                  {
+                    "label": "name"
+                  }
+                ],
+                "name": "kubernetes.cluster.name",
+                "availability": [],
+                "type": "STRING"
+              },
+              "name": "kubernetes.cluster.name",
+              "type": "TAG_FILTER",
+              "value": "ica-np-us-east",
+              "entity": "NOT_APPLICABLE",
+              "operator": "EQUALS"
+            },
+            {
+              "tagDefinition": {
+                "path": [
+                  {
+                    "label": "Kubernetes"
+                  },
+                  {
+                    "label": "Deployment"
+                  },
+                  {
+                    "label": "name"
+                  }
+                ],
+                "name": "kubernetes.deployment.name",
+                "availability": [],
+                "type": "STRING"
+              },
+              "name": "kubernetes.deployment.name",
+              "type": "TAG_FILTER",
+              "entity": "NOT_APPLICABLE",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "tagDefinition": {
+                "path": [
+                  {
+                    "label": "Kubernetes"
+                  },
+                  {
+                    "label": "Namespace"
+                  },
+                  {
+                    "label": "name"
+                  }
+                ],
+                "name": "kubernetes.namespace.name",
+                "availability": [],
+                "type": "STRING"
+              },
+              "name": "kubernetes.namespace.name",
+              "type": "TAG_FILTER",
+              "value": "ica-",
+              "entity": "NOT_APPLICABLE",
+              "operator": "CONTAINS"
+            }
+          ],
+          "type": "EXPRESSION"
+        },
+        "entityType": "kubernetesPod",
+        "sorting": {
+          "by": "cpu.total_usage.P75.P75",
+          "direction": "DESC"
+        },
+        "tableSize": 20,
+        "countGroup": true,
+        "source": "INFRASTRUCTURE_METRICS",
+        "datasets": {
+          "metrics": [
+            {
+              "lastValue": true,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "MEAN",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "kubernetesPod",
+              "metricPath": [],
+              "required": false,
+              "formatter": "number.compact",
+              "unit": "number",
+              "metric": "cpuRequests",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "CPU Requests",
+              "crossSeriesAggregation": "MEAN"
+            },
+            {
+              "lastValue": true,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "MEAN",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "kubernetesPod",
+              "metricPath": [],
+              "required": false,
+              "formatter": "number.compact",
+              "unit": "number",
+              "metric": "cpuLimits",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "CPU Limits",
+              "crossSeriesAggregation": "MEAN"
+            },
+            {
+              "lastValue": true,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "MEAN",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "kubernetesPod",
+              "metricPath": [],
+              "required": false,
+              "formatter": "bytes.detailed",
+              "unit": "byte",
+              "metric": "memoryRequests",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "Memory Requests",
+              "crossSeriesAggregation": "MEAN"
+            },
+            {
+              "lastValue": true,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "MEAN",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "kubernetesPod",
+              "metricPath": [],
+              "required": false,
+              "formatter": "bytes.detailed",
+              "unit": "byte",
+              "metric": "memoryLimits",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "Memory Limits",
+              "crossSeriesAggregation": "MEAN"
+            }
+          ]
+        },
+        "grouping": [
+          {
+            "tagDefinition": {
+              "path": [
+                {
+                  "label": "Kubernetes"
+                },
+                {
+                  "label": "Deployment"
+                },
+                {
+                  "label": "label.name"
+                }
+              ],
+              "name": "kubernetes.deployment.label.name",
+              "availability": [],
+              "type": "STRING"
+            },
+            "tagType": "STRING",
+            "groupbyTag": "kubernetes.deployment.label.name"
+          },
+          {
+            "tagDefinition": {
+              "path": [
+                {
+                  "label": "Kubernetes"
+                },
+                {
+                  "label": "Namespace"
+                },
+                {
+                  "label": "name"
+                }
+              ],
+              "name": "kubernetes.namespace.name",
+              "availability": [],
+              "type": "STRING"
+            },
+            "tagType": "STRING",
+            "groupbyTag": "kubernetes.namespace.name"
+          }
+        ]
+      }
+    },
+    {
+      "id": "54qns1jjZe_ebKF0",
+      "title": "Database latency per database [90th]",
+      "width": 3,
+      "height": 16,
+      "x": 6,
+      "y": 108,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "latency",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "DATABASE",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "SOURCE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "call.database.type",
+                "type": "TAG_FILTER",
+                "value": "mongo",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "P90",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 20,
+              "by": {
+                "groupbyTag": "service.name",
+                "groupbyTagEntity": "DESTINATION",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "tuRS8MFxN2fQz4IU",
+      "title": "Calls from browser",
+      "width": 3,
+      "height": 16,
+      "x": 9,
+      "y": 6,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": [
+            {
+              "color": "",
+              "metric": "beaconCount",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "name": "beacon.backend.traceId",
+                "type": "TAG_FILTER",
+                "entity": "NOT_APPLICABLE",
+                "operator": "NOT_EMPTY"
+              },
+              "beaconType": "httpRequest",
+              "metricLabel": "HTTP request - Calls",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "SUM",
+              "label": "Calls from browser",
+              "source": "WEBSITE",
+              "grouping": [
+                {
+                  "maxResults": 10,
+                  "by": {
+                    "groupbyTag": "beacon.http.origin",
+                    "groupbyTagEntity": "NOT_APPLICABLE",
+                    "groupbyTagSecondLevelKey": ""
+                  },
+                  "includeOthers": true,
+                  "direction": "DESC"
+                }
+              ]
+            }
+          ],
+          "formatterSelected": false
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "sOYJ3-QHfrQgOGk-",
+      "title": "Database latency per database [90th]",
+      "width": 3,
+      "height": 16,
+      "x": 9,
+      "y": 108,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "latency.detailed",
+          "renderer": "line",
+          "metrics": [
+            {
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "P90",
+              "label": "",
+              "source": "APPLICATION",
+              "grouping": [
+                {
+                  "maxResults": 20,
+                  "by": {
+                    "groupbyTag": "service.name",
+                    "groupbyTagEntity": "DESTINATION",
+                    "groupbyTagSecondLevelKey": ""
+                  },
+                  "includeOthers": false,
+                  "direction": "DESC"
+                }
+              ],
+              "includeSynthetic": false,
+              "metric": "latency",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [
+                  {
+                    "name": "call.type",
+                    "type": "TAG_FILTER",
+                    "value": "DATABASE",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "kubernetes.cluster.name",
+                    "type": "TAG_FILTER",
+                    "value": "ica-np-us-east",
+                    "entity": "SOURCE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "call.database.type",
+                    "type": "TAG_FILTER",
+                    "value": "mongo",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  }
+                ],
+                "type": "EXPRESSION"
+              },
+              "metricLabel": "Latency",
+              "includeInternal": false
+            }
+          ],
+          "formatterSelected": false
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "tBY3L3PtaBQAH5dU",
+      "title": "Erroneous calls per service",
+      "width": 5,
+      "height": 16,
+      "x": 3,
+      "y": 70,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "number.compact",
+          "renderer": "line",
+          "metrics": [
+            {
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "SUM",
+              "label": "Erroneous calls per service",
+              "source": "APPLICATION",
+              "grouping": [
+                {
+                  "maxResults": 10,
+                  "by": {
+                    "groupbyTag": "service.name",
+                    "groupbyTagEntity": "DESTINATION",
+                    "groupbyTagSecondLevelKey": ""
+                  },
+                  "includeOthers": true,
+                  "direction": "DESC"
+                }
+              ],
+              "includeSynthetic": false,
+              "metric": "erroneousCalls",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [
+                  {
+                    "name": "call.type",
+                    "type": "TAG_FILTER",
+                    "value": "HTTP",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "kubernetes.cluster.name",
+                    "type": "TAG_FILTER",
+                    "value": "ica-np-us-east",
+                    "entity": "DESTINATION",
+                    "operator": "EQUALS"
+                  }
+                ],
+                "type": "EXPRESSION"
+              },
+              "metricLabel": "Erroneous Calls (count)",
+              "includeInternal": false
+            }
+          ],
+          "formatterSelected": true
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "3Zij6pNvY6MiCtP0",
+      "title": "Worker Nodes - CPU",
+      "width": 6,
+      "height": 18,
+      "x": 0,
+      "y": 196,
+      "type": "table",
+      "config": {
+        "showGroupsWithMissingTags": false,
+        "tagFilterExpression": {
+          "tagDefinition": {
+            "path": [
+              {
+                "label": "Kubernetes"
+              },
+              {
+                "label": "Cluster"
+              },
+              {
+                "label": "name"
+              }
+            ],
+            "name": "kubernetes.cluster.name",
+            "availability": [],
+            "type": "STRING"
+          },
+          "name": "kubernetes.cluster.name",
+          "type": "TAG_FILTER",
+          "value": "ica-np-us-east",
+          "entity": "NOT_APPLICABLE",
+          "operator": "EQUALS"
+        },
+        "entityType": "kubernetesNode",
+        "sorting": {
+          "by": "label",
+          "direction": "ASC"
+        },
+        "tableSize": 5,
+        "countGroup": true,
+        "source": "INFRASTRUCTURE_METRICS",
+        "datasets": {
+          "metrics": [
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "MEAN",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "kubernetesNode",
+              "metricPath": [],
+              "required": false,
+              "formatter": "number.compact",
+              "unit": "number",
+              "metric": "required_cpu",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "CPU Requests",
+              "crossSeriesAggregation": "MEAN"
+            },
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "MEAN",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "kubernetesNode",
+              "metricPath": [],
+              "required": false,
+              "formatter": "number.compact",
+              "unit": "number",
+              "metric": "limit_cpu",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "CPU Limits",
+              "crossSeriesAggregation": "MEAN"
+            },
+            {
+              "lastValue": false,
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "MEAN",
+              "label": "",
+              "source": "INFRASTRUCTURE_METRICS",
+              "type": "kubernetesNode",
+              "metricPath": [],
+              "required": false,
+              "formatter": "number.compact",
+              "unit": "number",
+              "metric": "cap_cpu",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [],
+                "type": "EXPRESSION"
+              },
+              "allowedCrossSeriesAggregations": [],
+              "metricLabel": "CPU Capacity",
+              "crossSeriesAggregation": "MEAN"
+            }
+          ]
+        },
+        "grouping": []
+      }
+    },
+    {
+      "id": "PWrHOV55xljWwCgC",
+      "title": "Database calls per database",
+      "width": 3,
+      "height": 16,
+      "x": 9,
+      "y": 92,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": [
+            {
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "SUM",
+              "label": "",
+              "source": "APPLICATION",
+              "grouping": [
+                {
+                  "maxResults": 20,
+                  "by": {
+                    "groupbyTag": "service.name",
+                    "groupbyTagEntity": "DESTINATION",
+                    "groupbyTagSecondLevelKey": ""
+                  },
+                  "includeOthers": false,
+                  "direction": "DESC"
+                }
+              ],
+              "includeSynthetic": false,
+              "metric": "calls",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [
+                  {
+                    "name": "call.type",
+                    "type": "TAG_FILTER",
+                    "value": "DATABASE",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "kubernetes.cluster.name",
+                    "type": "TAG_FILTER",
+                    "value": "ica-np-us-east",
+                    "entity": "SOURCE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "call.database.type",
+                    "type": "TAG_FILTER",
+                    "value": "mongo",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  }
+                ],
+                "type": "EXPRESSION"
+              },
+              "metricLabel": "Calls",
+              "includeInternal": false
+            }
+          ],
+          "formatterSelected": false
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "fiLmiIeDAQ3ywIMa",
+      "title": "Calls per URL [sum]",
+      "width": 3,
+      "height": 16,
+      "x": 6,
+      "y": 38,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "number.detailed",
+          "renderer": "stackedArea",
+          "metrics": [
+            {
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "SUM",
+              "label": "",
+              "source": "APPLICATION",
+              "grouping": [
+                {
+                  "maxResults": 10,
+                  "by": {
+                    "groupbyTag": "call.http.url",
+                    "groupbyTagEntity": "NOT_APPLICABLE",
+                    "groupbyTagSecondLevelKey": ""
+                  },
+                  "includeOthers": false,
+                  "direction": "DESC"
+                }
+              ],
+              "includeSynthetic": false,
+              "metric": "calls",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [
+                  {
+                    "name": "call.type",
+                    "type": "TAG_FILTER",
+                    "value": "HTTP",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "kubernetes.cluster.name",
+                    "type": "TAG_FILTER",
+                    "value": "ica-np-us-east",
+                    "entity": "DESTINATION",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "call.name",
+                    "type": "TAG_FILTER",
+                    "value": "GET /health",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "NOT_CONTAIN"
+                  },
+                  {
+                    "name": "call.name",
+                    "type": "TAG_FILTER",
+                    "value": "GET /notifications/ws",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "NOT_CONTAIN"
+                  }
+                ],
+                "type": "EXPRESSION"
+              },
+              "metricLabel": "Calls",
+              "includeInternal": false
+            }
+          ],
+          "formatterSelected": false
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "xA3X_LViPx-PE0Hr",
+      "title": "Calls latency service [90th]",
+      "width": 3,
+      "height": 16,
+      "x": 3,
+      "y": 22,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "latency",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "HTTP",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "DESTINATION",
+                "operator": "EQUALS"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "P90",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 20,
+              "by": {
+                "groupbyTag": "service.name",
+                "groupbyTagEntity": "DESTINATION",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "TR1h1zT2ZDbJFy5M",
+      "title": "Database Statements - PostgreSQL",
+      "width": 6,
+      "height": 16,
+      "x": 0,
+      "y": 140,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "calls",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "DATABASE",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "SOURCE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "call.database.type",
+                "type": "TAG_FILTER",
+                "value": "jdbc",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "SUM",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 20,
+              "by": {
+                "groupbyTag": "call.database.statement",
+                "groupbyTagEntity": "NOT_APPLICABLE",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": true,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    },
+    {
+      "id": "z43v60xFQhseNMWo",
+      "title": "Database calls per deployment",
+      "width": 3,
+      "height": 16,
+      "x": 3,
+      "y": 92,
+      "type": "chart",
+      "config": {
+        "shareMaxAxisDomain": false,
+        "y1": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": [
+            {
+              "color": "",
+              "compareToTimeShifted": false,
+              "threshold": {
+                "critical": "",
+                "warning": "",
+                "thresholdEnabled": false,
+                "operator": ">="
+              },
+              "aggregation": "SUM",
+              "label": "",
+              "source": "APPLICATION",
+              "grouping": [
+                {
+                  "maxResults": 10,
+                  "by": {
+                    "groupbyTag": "kubernetes.deployment.name",
+                    "groupbyTagEntity": "SOURCE",
+                    "groupbyTagSecondLevelKey": ""
+                  },
+                  "includeOthers": true,
+                  "direction": "DESC"
+                }
+              ],
+              "includeSynthetic": false,
+              "metric": "calls",
+              "timeShift": 0,
+              "tagFilterExpression": {
+                "logicalOperator": "AND",
+                "elements": [
+                  {
+                    "name": "call.type",
+                    "type": "TAG_FILTER",
+                    "value": "DATABASE",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "kubernetes.cluster.name",
+                    "type": "TAG_FILTER",
+                    "value": "ica-np-us-east",
+                    "entity": "SOURCE",
+                    "operator": "EQUALS"
+                  },
+                  {
+                    "name": "call.database.type",
+                    "type": "TAG_FILTER",
+                    "value": "mongo",
+                    "entity": "NOT_APPLICABLE",
+                    "operator": "EQUALS"
+                  }
+                ],
+                "type": "EXPRESSION"
+              },
+              "metricLabel": "Calls",
+              "includeInternal": false
+            }
+          ],
+          "formatterSelected": false
+        },
+        "y2": {
+          "formatter": "number.detailed",
+          "renderer": "line",
+          "metrics": []
+        },
+        "type": "TIME_SERIES"
+      }
+    },
+    {
+      "id": "oDjL4kIapoZor7MB",
+      "title": "Calls per technology",
+      "width": 4,
+      "height": 16,
+      "x": 0,
+      "y": 54,
+      "type": "topList",
+      "config": {
+        "formatter": "number.compact",
+        "metricConfiguration": {
+          "includeSynthetic": false,
+          "metric": "calls",
+          "timeShift": 0,
+          "tagFilterExpression": {
+            "logicalOperator": "AND",
+            "elements": [
+              {
+                "name": "call.type",
+                "type": "TAG_FILTER",
+                "value": "HTTP",
+                "entity": "NOT_APPLICABLE",
+                "operator": "EQUALS"
+              },
+              {
+                "name": "kubernetes.cluster.name",
+                "type": "TAG_FILTER",
+                "value": "ica-np-us-east",
+                "entity": "DESTINATION",
+                "operator": "EQUALS"
+              }
+            ],
+            "type": "EXPRESSION"
+          },
+          "aggregation": "SUM",
+          "source": "APPLICATION",
+          "grouping": [
+            {
+              "maxResults": 10,
+              "by": {
+                "groupbyTag": "technology",
+                "groupbyTagEntity": "DESTINATION",
+                "groupbyTagSecondLevelKey": ""
+              },
+              "includeOthers": false,
+              "direction": "DESC"
+            }
+          ],
+          "includeInternal": false
+        },
+        "formatterSelected": true
+      }
+    }
+  ],
+  "ownerId": "60764358c00835000154886e",
+  "writable": true
+}
